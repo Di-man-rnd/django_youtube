@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+
+        {% include "hello/nav_panel.html" %}
+    <hr>
+        {% block menu %}current menu dosn't exist{% endblock %}
+    <hr>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

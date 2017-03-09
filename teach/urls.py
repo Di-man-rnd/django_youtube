@@ -14,9 +14,24 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import url
+from django.conf.urls import url, patterns
 from django.contrib import admin
+from teach.views import *
 
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-]
+# urlpatterns = [
+#     url(r'^admin/', admin.site.urls),
+#     url(r'^$', hello),
+# ]
+
+urlpatterns = patterns('',
+    (r'^admin/', admin.site.urls),
+    (r'^hello/$', hello),
+    (r'^hello2/$', hello2),
+
+    (r'^hello3/(\d{1,2})/$', hello3),
+    (r'^hello3/$', hello3),
+
+    (r'^hello4/$', hello4),
+    (r'^hello5/$', hello5),
+    (r'^hello6/$', hello6),
+)
