@@ -6,7 +6,7 @@ class Publisher(models.Model):
     address = models.CharField(max_length=50)
     website = models.URLField(blank=True)
 
-    class Meta():
+    class Meta:
         db_table = 'publisher'
 
     def __str__(self):
@@ -18,9 +18,11 @@ class Autor(models.Model):
     last_name = models.CharField(max_length=50)
     email = models.EmailField(blank=True)
 
-    class Meta():
+    class Meta:
         db_table = 'autor'
         ordering = ['last_name']
+        verbose_name = 'Автор'
+        verbose_name_plural = 'Авторы'
 
     def __str__(self):
         return u'%s  %s (%s)' % (self.first_name, self.last_name, self.length())
@@ -30,12 +32,12 @@ class Autor(models.Model):
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, verbose_name='Название')
     publication_date = models.DateField(verbose_name='Дата публикации', null=True, blank=True)
     autor = models.ManyToManyField(Autor)
     publisher = models.ForeignKey(Publisher)
 
-    class Meta():
+    class Meta:
         db_table = 'book'
         verbose_name = 'Книгу'
         verbose_name_plural = 'Книги'

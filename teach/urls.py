@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls import url, patterns
 from django.contrib import admin
 from teach.views import *
+from books.views import *
 
 # urlpatterns = [
 #     url(r'^admin/', admin.site.urls),
@@ -34,4 +35,8 @@ urlpatterns = patterns('',
     (r'^hello4/$', hello4),
     (r'^hello5/$', hello5),
     (r'^hello6/$', hello6),
+
+
+    (r'^books/$', getbooks),
+
 )
