@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 def hello(request):
-    return HttpResponse("hello !")
+    return HttpResponse("hello !we in <b>%s</b> page" % request.path)
 
 
 def hello2(request):
@@ -37,4 +37,9 @@ def hello5(request):
 
 
 def hello6(request):
-    pass
+    return render_to_response('hello/djinfo.html', {
+        'meta': request.META,
+        'meta_k': request.META.keys(),
+        'meta_v': request.META.values(),
+        'path': request.path
+    })

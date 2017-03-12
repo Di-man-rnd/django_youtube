@@ -1,0 +1,17 @@
+{% extends 'skelet.html' %}
+
+{%  block content %}
+
+    <textarea rows="20" cols="80">
+    {% for key in meta_k %}
+        {% for value in meta_v %}
+            {{ key }} - {{ value }}
+        {% endfor %}
+    {% endfor %}
+    </textarea>
+
+{% endblock %}
+
+
+
+

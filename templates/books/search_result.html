@@ -1,0 +1,23 @@
+{% extends 'skelet.html' %}
+
+{% block content %}
+
+    {% if books %}
+        <hr>
+        <p>found: {{ books|length }}</p>
+        <hr>
+
+        {% for book in books %}
+
+            Вы искали книгу: {{ book.title }}
+            <br>
+            издательство: {{ book.publisher }}
+            <br>
+            автор:  {{ book.autor }}
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>по запросу ничего не найдено</p>
+    {% endif %}
+
+{% endblock %}

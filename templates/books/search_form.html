@@ -1,0 +1,16 @@
+{% extends 'skelet.html' %}
+
+{% block content %}
+
+    {% if er %}
+        {% for error in er %}
+            <p style="color: red"> {{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="" method="get">
+        <input type="search" name="q" placeholder="search ..."/>
+        <input type="submit" value="Find">
+    </form>
+
+{% endblock %}

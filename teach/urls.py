@@ -38,5 +38,6 @@ urlpatterns = patterns('',
 
 
     (r'^books/$', getbooks),
+    (r'^search/$', search),
 
 )

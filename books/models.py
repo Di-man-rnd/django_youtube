@@ -33,7 +33,7 @@ class Autor(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
-    publication_date = models.DateField(verbose_name='Дата публикации', null=True, blank=True)
+    publication_date = models.DateField(verbose_name='Дата публикации', null=True, blank=True) # blank - поле не обязательно, null - не обязательно для числовых полей, дат,....
     autor = models.ManyToManyField(Autor)
     publisher = models.ForeignKey(Publisher)
 
