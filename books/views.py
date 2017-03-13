@@ -7,7 +7,7 @@ from books.models import Book, Autor, Publisher
 
 
 def getbooks(request):
-    all_books = Book.objects.all();
+    all_books = Book.objects.all()
     return render_to_response('books/books.html', {'books': all_books})
 
 
@@ -32,7 +32,7 @@ def contact(request):
             errors.append('Введите тему.')
         if not request.POST.get('message', ''):
             errors.append('Введите сообщение.')
-        if request.POST.get('email', '') and '@' not in request.POST['e-mail']:
+        if request.POST.get('email', '') and '@' not in request.POST['email']:
             errors.append('Введите правильный адрес e-mail.')
         if not errors:
             # send_mail(
@@ -41,13 +41,13 @@ def contact(request):
             #     request.POST.get('e-mail', 'noreply@example.com'),
             #     ['siteowner@example.com'],
             # )
-            # return HttpResponseRedirect('/contact/thanks/')
             print(
                 request.POST['subject'],
                 request.POST['message'],
                 request.POST.get('email', 'noreply@example.com'),
                 ['siteowner@example.com'],
             )
+            return HttpResponseRedirect('/contact/thanks/')
     return render_to_response('books/contact.html', {
         'errors': errors,
         'subject': request.POST.get('subject', ''),
@@ -65,7 +65,7 @@ def contactform(request):
             return HttpResponseRedirect('/contact/thanks/')
     else:
         form = ContactForm()
-    return render_to_response('books/contactform.html', {'form': form,})
+    return render_to_response('books/contactform.html', {'form': form})
 
 
 def thanks(request):
