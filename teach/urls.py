@@ -39,5 +39,8 @@ urlpatterns = patterns('',
 
     (r'^books/$', getbooks),
     (r'^search/$', search),
+    (r'^contact/$', contact),
+    (r'^contactform/$', contactform),
+    (r'^contact/thanks/$', thanks),
 
 )

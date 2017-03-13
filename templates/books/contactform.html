@@ -1,0 +1,22 @@
+{% extends 'skelet.html' %}
+
+{% block content %}
+    {% if form.errors %}
+        <b>{{ form.errors }}</b>
+        <hr>
+
+        <ul>
+        {% for error in form.errors %}
+             <li style="color: red;"> {{ error }} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="" method="post">
+        <table border="1">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Отправить">
+    </form>
+
+{% endblock %}
