@@ -14,6 +14,7 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.conf import settings
 from django.conf.urls import url, patterns
 from django.contrib import admin
 from teach.views import *
@@ -35,12 +36,20 @@ urlpatterns = patterns('',
     (r'^hello4/$', hello4),
     (r'^hello5/$', hello5),
     (r'^hello6/$', hello6),
+    (r'^hello7/(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})/$', hello7),
+    (r'^hello7/$', hello7main),
 
 
     (r'^books/$', getbooks),
     (r'^search/$', search),
     (r'^contact/$', contact),
-    (r'^contactform/$', contactform),
+    (r'^contactform/$', 'books.views.contactform'), # === (r'^contactform/$', contactform, {dictionary: val})
     (r'^contact/thanks/$', thanks),
+    (r'^$', home),
 
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        # (r'^debuginfo/$', debug),
+    )

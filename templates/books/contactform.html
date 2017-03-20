@@ -12,4 +12,11 @@
         <input type="submit" value="Отправить">
     </form>
 
+
+    <hr><hr>
+    <u>Отдельно поле из формы</u><br><br>
+    {{ form.message }}
+    <br><u>Отдельно поле для ошибок</u><br><br>
+    {{ form.message.errors }}
+
 {% endblock %}

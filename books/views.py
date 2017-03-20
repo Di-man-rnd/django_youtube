@@ -60,11 +60,11 @@ def contactform(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
+            cd = form.cleaned_data # получаем словарь
             print(cd)
             return HttpResponseRedirect('/contact/thanks/')
     else:
-        form = ContactForm()
+        form = ContactForm({'subject': 'you are welcome!'})
     return render_to_response('books/contactform.html', {'form': form})
 
 

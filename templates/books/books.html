@@ -1,14 +1,18 @@
 {% extends 'skelet.html' %}
+{% load poll %}
 
 {% block content %}
-
+    {% now 'Y - E' %} {# filter #} <br>
+    {% my_tag 'templ -tag' %}  {# Tag #}
     <table>
     {% for book in books %}
 
         <tr>
-            <td><b>{{ book.title }}</b> </td>
+            <td><b>{{ book.title|filter_custom }}</b> </td>
             <td>[<i>{{ book.publication_date }}</i>]</td>
             <td> - <b>Издательство</b>: {{ book.publisher }}</td>
+            <td> - <b>Autor</b>: ({{ book.autor.pk }})</td>
+            <td> - <b>tag</b>: {% jump_link 'inclusion_tag' %}  </td>
 
         </tr>
     {% endfor %}

@@ -31,11 +31,18 @@ class Autor(models.Model):
         return Book.objects.filter(autor=self.id).count()
 
 
+class BookManager(models.Manager):
+    def title_count(self, keyword):
+        return self.filter(title__icontains=keyword).count()
+
+
 class Book(models.Model):
     title = models.CharField(max_length=100, verbose_name='Название')
     publication_date = models.DateField(verbose_name='Дата публикации', null=True, blank=True) # blank - поле не обязательно, null - не обязательно для числовых полей, дат,....
     autor = models.ManyToManyField(Autor)
     publisher = models.ForeignKey(Publisher)
+    objects = BookManager()  # свой метод для запроса из БД Book.objects.title_count('Свеча')
+
 
     class Meta:
         db_table = 'book'
