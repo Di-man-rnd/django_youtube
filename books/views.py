@@ -5,10 +5,19 @@ from django.core.mail import send_mail
 from books.forms import ContactForm
 from books.models import Book, Autor, Publisher
 
+#  время загрузки страницы  with Profiler() as p:
+import time
+class Profiler(object):
+    def __enter__(self):
+        self._startTime = time.time()
+    def __exit__(self, type, value, traceback):
+        print( "Elapsed time: {:.3f} sec".format(time.time() - self._startTime))
+
 
 def getbooks(request):
-    all_books = Book.objects.all()
-    return render_to_response('books/books.html', {'books': all_books})
+    with Profiler() as p:
+        all_books = Book.objects.all()
+        return render_to_response('books/books.html', {'books': all_books})
 
 
 def search(request):

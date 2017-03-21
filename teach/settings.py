@@ -24,8 +24,25 @@ SECRET_KEY = '_dlbu82kz90g=il(w@zenmqumj*w=)icmtng*302=x%enz@=i!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = False
+# отправлять емэил на почту при ошибках
+# ADMINS = (
+#     ('name', 'E-mail'),
+#     ('name', 'E-mail'),
+# )
+# EMAIL_HOST =
 
-ALLOWED_HOSTS = []
+
+
+# Настройка оповещения о «битых» ссылках
+# SEND_BROKEN_LINK_EMAILS = True
+MANAGERS = (
+    ('name', 'E-mail'),
+    ('name', 'E-mail'),
+)
+
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    # 'django.contrib.flatpages',
+    # 'django.contrib.sites',
     # 'gunicorn',
 ]
 
@@ -50,6 +69,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.gzip.GZipMiddleware', # сжимает ответы для экономии пропускной способности
+    # 'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 ]
 
 ROOT_URLCONF = 'teach.urls'

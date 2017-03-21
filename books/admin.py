@@ -16,6 +16,13 @@ class BookAdmin(admin.ModelAdmin):
     # fields = ('title',)                       # отображает поля которые перечислены, выводит в том порядке в котором указали
     filter_horizontal = ('autor',)              # для поля ManyToMany делает красивый фильтр
     raw_id_fields = ('publisher',)              # для <select> заменяет на <input>, загружает всех в popup окне
+    fieldsets = [
+            (None,               {'fields': ['title', 'publisher']}),
+            ('Date information', {'fields': ['publication_date']}),
+        ]
+
+
+
 
 # Register your models here.
 admin.site.register(Autor, AutorAdmin)

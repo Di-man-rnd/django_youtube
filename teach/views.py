@@ -5,6 +5,8 @@ from django.shortcuts import render_to_response, redirect
 
 import datetime
 
+from teach.settings import BASE_DIR
+
 
 def hello(request):
     return HttpResponse("hello !we in <b>%s</b> page" % request.path)
@@ -46,7 +48,6 @@ def hello6(request):
 
 
 def hello7(request, y, m, d):
-    print(y, m, d)
     date2 = datetime.date(int(y), int(m), int(d))
     return HttpResponse(date2)
 
@@ -57,3 +58,24 @@ def hello7main(request):
 
 def home(request):
     return redirect('/contactform/')
+
+
+def my_image(request):
+    image_data = open(BASE_DIR+'/1.jpg', 'rb').read()
+    return HttpResponse(image_data, mimetype='image/png')
+
+
+def get_cookie(request):
+    if 'color' in request.COOKIES:
+        return HttpResponse('Ваш любимый цвет %s' % request.COOKIES['color'])
+    else:
+        return HttpResponse('У вас нет любимого цвета.')
+
+
+def set_cookie(request):
+    if 'color' in request.GET:
+        response = HttpResponse('Ваш цвет : %s' % request.GET['color'])
+        response.set_cookie('color', request.GET['color'])
+        return response
+    else:
+        return HttpResponse('Вы не указали любимый цвет.')

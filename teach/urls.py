@@ -15,7 +15,7 @@ Including another URLconf
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf import settings
-from django.conf.urls import url, patterns
+from django.conf.urls import url, patterns, include
 from django.contrib import admin
 from teach.views import *
 from books.views import *
@@ -46,6 +46,9 @@ urlpatterns = patterns('',
     (r'^contactform/$', 'books.views.contactform'), # === (r'^contactform/$', contactform, {dictionary: val})
     (r'^contact/thanks/$', thanks),
     (r'^$', home),
+    (r'^img/$', my_image),
+    (r'^get_cookie/$', get_cookie),
+    (r'^set_cookie/$', set_cookie),
 
 )
 
