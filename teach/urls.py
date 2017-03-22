@@ -50,6 +50,8 @@ urlpatterns = patterns('',
     (r'^get_cookie/$', get_cookie),
     (r'^set_cookie/$', set_cookie),
 
+    (r'^books_v/$', IndexView.as_view()),
+
 )
 
 if settings.DEBUG:

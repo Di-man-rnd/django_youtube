@@ -1,17 +1,21 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.core.mail import send_mail
+from django.views import generic
 
 from books.forms import ContactForm
 from books.models import Book, Autor, Publisher
+import time
+
 
 #  время загрузки страницы  with Profiler() as p:
-import time
 class Profiler(object):
+
     def __enter__(self):
         self._startTime = time.time()
+
     def __exit__(self, type, value, traceback):
-        print( "Elapsed time: {:.3f} sec".format(time.time() - self._startTime))
+        print("Elapsed time: {:.3f} sec".format(time.time() - self._startTime))
 
 
 def getbooks(request):
@@ -79,3 +83,15 @@ def contactform(request):
 
 def thanks(request):
     return render_to_response('books/thanks.html')
+
+# =============================================================================
+# =============================================================================
+# =============================================================================
+
+
+class IndexView(generic.ListView):
+    template_name = 'books/books.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        return Book.objects.all()
