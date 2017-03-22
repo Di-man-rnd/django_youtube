@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books',
+    'youtube'
     # 'django.contrib.flatpages',
     # 'django.contrib.sites',
     # 'gunicorn',
