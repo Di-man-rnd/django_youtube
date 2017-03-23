@@ -79,3 +79,7 @@ def set_cookie(request):
         return response
     else:
         return HttpResponse('Вы не указали любимый цвет.')
+
+
+def get_img(request, *img_name):
+    return redirect('/files/media/bloger/%s' % img_name[1])

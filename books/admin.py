@@ -3,11 +3,13 @@ from django.contrib import admin
 from .models import Autor, Publisher, Book
 
 
+@admin.register(Autor)  # через декоратор
 class AutorAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email')                        # выводимые поля
     search_fields = ('first_name', 'last_name')                                # поиск по полям
 
 
+@admin.register(Book)  # через декоратор
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'publication_date', 'publisher')
     list_filter = ('publisher', 'autor', 'publication_date')    # фильтр
@@ -25,6 +27,6 @@ class BookAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
-admin.site.register(Autor, AutorAdmin)
-admin.site.register(Book, BookAdmin)
+# admin.site.register(Autor, AutorAdmin) # через метод
+# admin.site.register(Book, BookAdmin)
 admin.site.register(Publisher)

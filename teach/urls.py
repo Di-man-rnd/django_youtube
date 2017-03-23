@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url, patterns, include
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from teach.views import *
 from books.views import *
 
@@ -26,6 +28,7 @@ from books.views import *
 # ]
 
 urlpatterns = patterns('',
+    (r'^admin/youtube/bloger/(.*)/change/files/media/bloger/(.*)/change/$', get_img),
     (r'^admin/', admin.site.urls),
     (r'^hello/$', hello),
     (r'^hello2/$', hello2),
@@ -53,6 +56,10 @@ urlpatterns = patterns('',
     (r'^books_v/$', IndexView.as_view()),
 
 )
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
+
 
 if settings.DEBUG:
     urlpatterns += patterns('',
