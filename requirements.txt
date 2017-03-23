@@ -3,4 +3,5 @@ Django==1.9
 packaging==16.8
 psycopg2==2.7
 pyparsing==2.2.0
+redis==2.10.5
 six==1.10.0
