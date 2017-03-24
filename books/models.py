@@ -41,7 +41,7 @@ class Book(models.Model):
     publication_date = models.DateField(verbose_name='Дата публикации', null=True, blank=True) # blank - поле не обязательно, null - не обязательно для числовых полей, дат,....
     autor = models.ManyToManyField(Autor)
     publisher = models.ForeignKey(Publisher)
-    objects = BookManager()  # свой метод для запроса из БД Book.objects.title_count('Свеча')
+    # objects = BookManager()  # свой метод для запроса из БД Book.objects.title_count('Свеча')
 
 
     class Meta:

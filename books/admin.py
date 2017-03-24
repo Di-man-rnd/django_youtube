@@ -13,13 +13,13 @@ class AutorAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'publication_date', 'publisher')
     list_filter = ('publisher', 'autor', 'publication_date')    # фильтр
-    date_hierarchy = 'publication_date'         # фильтр для дат
-    ordering = ('title',)                       # упорядочили записи для админки
-    # fields = ('title',)                       # отображает поля которые перечислены, выводит в том порядке в котором указали
-    filter_horizontal = ('autor',)              # для поля ManyToMany делает красивый фильтр
-    raw_id_fields = ('publisher',)              # для <select> заменяет на <input>, загружает всех в popup окне
+    date_hierarchy = 'publication_date'    # фильтр для дат
+    ordering = ('title',)                  # упорядочили записи для админки
+    # fields = ('title',)                  # отображает поля которые перечислены, выводит в том порядке в котором указали
+    filter_horizontal = ('autor',)         # для поля ManyToMany делает красивый фильтр
+    raw_id_fields = ('publisher',)         # для <select> заменяет на <input>, загружает всех в popup окне
     fieldsets = [
-            (None,               {'fields': ['title', 'publisher']}),
+            (None,               {'fields': ['title', 'publisher', 'autor']}),
             ('Date information', {'fields': ['publication_date']}),
         ]
 
