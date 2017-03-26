@@ -21,6 +21,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from teach.views import *
 from books.views import *
+from youtube.views import *
 
 # urlpatterns = [
 #     url(r'^admin/', admin.site.urls),
@@ -29,6 +30,8 @@ from books.views import *
 
 urlpatterns = patterns('',
     (r'^admin/youtube/bloger/(.*)/change/files/media/bloger/(.*)/change/$', get_img),
+    (r'^admin/youtube/bloger/(.*)/media/bloger/(.*)/change/$', get_img),
+
     (r'^admin/', admin.site.urls),
     (r'^hello/$', hello),
     (r'^hello2/$', hello2),
@@ -54,6 +57,7 @@ urlpatterns = patterns('',
     (r'^set_cookie/$', set_cookie),
 
     (r'^books_v/$', IndexView.as_view()),
+    (r'^bloger/$', all_bloger),
 
 )
 

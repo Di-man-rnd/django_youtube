@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ All Blogers
+{% endblock %}
+
+
+{% block content %}
+    {% for bloger in blogers %}
+
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">{{ bloger.name }}</h4>
+                <p class="list-group-item-text">{{ bloger.url }}</p>
+            </a>
+        </div>
+
+    {% endfor %}
+{% endblock %}
+
+
