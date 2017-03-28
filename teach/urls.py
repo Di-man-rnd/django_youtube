@@ -57,8 +57,9 @@ urlpatterns = patterns('',
     (r'^set_cookie/$', set_cookie),
 
     (r'^books_v/$', IndexView.as_view()),
-    (r'^bloger/$', all_bloger),
-
+    # (r'^bloger/$', all_bloger),
+    # (r'^bloger/([0-9]+)/$', detail_bloger),
+    (r'^bloger/', include('youtube.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

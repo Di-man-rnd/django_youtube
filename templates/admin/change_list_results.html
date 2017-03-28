@@ -40,7 +40,7 @@
 
 <script>
     django.jQuery('#result_list tbody tr').each(function(i,e){
-        django.jQuery(e).find('.field-img ').append('<img src="'+ django.jQuery(e).find('.field-img a').attr('href') +'" />')
+        django.jQuery(e).find('.field-img ').append('<img style="height:45px" src="'+ django.jQuery(e).find('.field-img a').attr('href') +'" />')
         django.jQuery(e).find('.field-img a').remove()
 
         url =  django.jQuery(  django.jQuery(e).find('.field-url')[0]  ).text()

@@ -148,3 +148,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 MEDIA_URL = 'files/media/'
 
 TEMPLATE_DIRS = [BASE_DIR + '/templates']
+LOG_PATH = BASE_DIR + '/log.txt'

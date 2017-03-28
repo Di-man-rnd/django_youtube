@@ -28,3 +28,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+# ====================== SIGNALS ======================
+# bloger del img
+from youtube.signals import bloger_del_img

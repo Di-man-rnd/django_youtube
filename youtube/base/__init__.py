@@ -6,6 +6,18 @@ from teach.settings import *
 from youtube.models import Bloger
 
 
+class Log(object):
+    def info(self, msg):
+        a = '============  INFO ==========\n'
+        text = a + msg
+        self.wr(text)
+
+    def wr(self, msg):
+        loger = open(LOG_PATH, 'a')
+        loger.write('{}'.format(msg) + '\n')
+        loger.close()
+
+
 def grab():
     # init name img
     count = 0
@@ -61,3 +73,13 @@ def grab():
             img=cur_item['img'],
         )
         elem.save()
+
+
+# ===============   Change Category =============
+# django.jQuery('img').click(function(){
+#   tt= django.jQuery(this).parent().parent()
+#   id =   django.jQuery(tt).find('.action-checkbox input').attr('value')
+#   console.info(id)
+#   django.jQuery.post("/bloger/setcat/?pk="+ id + '&cat=5')
+#
+# })
