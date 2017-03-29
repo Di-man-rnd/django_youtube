@@ -17,14 +17,12 @@ def all_bloger(request):
 
 def detail_bloger(request, id):
     bloger = Bloger.objects.get(pk=id)
-    similar = Bloger.objects.\
-    filter(category__id=bloger.category.id).\
-    exclude(pk=id)[:5]
+    similar = Bloger.objects.filter(category__id=bloger.category.id).exclude(pk=id)[:5]
     return render(request, 'detail.html', {'bloger': bloger, 'similar': similar})
 
 
 def set_cat(request):
     bloger = Bloger.objects.get(pk=request.GET['pk'])
-    bloger.category_id = request.GET['cat']
+    bloger.category_id = int(request.GET['cat'])
     bloger.save()
     return HttpResponse('ok')

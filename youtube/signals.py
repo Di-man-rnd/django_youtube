@@ -15,4 +15,4 @@ def bloger_del_img(sender, **kwargs):
         os.remove(MEDIA_ROOT + '/' + str(kwargs['instance'].img))
     except Exception:
         pass
-    print("Request finished!")
+    print(str(kwargs['instance'].img))

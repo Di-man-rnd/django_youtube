@@ -1,12 +1,19 @@
 from django.db import models
 
 
+class BlogerManager(models.Manager):
+
+    def stok(self):
+        return self.exclude(category__id=1)[:2]
+
+
 class Bloger(models.Model):
     name = models.CharField(verbose_name=u'Название', max_length=200)
     url = models.URLField(verbose_name=u'Ссылка')
     img = models.FileField(verbose_name=u'Аватарка', upload_to='bloger/', blank=True, null=True)
     category = models.ForeignKey('Category', verbose_name=u'Катагория', default=1)
-    is_favorites= models.BooleanField(verbose_name=u'Избранное', default=False, help_text=u'для избранного !')
+    is_favorites = models.BooleanField(verbose_name=u'Избранное', default=False, help_text=u'для избранного !')
+    objects = BlogerManager()
 
     class Meta:
         verbose_name = 'Блогер'

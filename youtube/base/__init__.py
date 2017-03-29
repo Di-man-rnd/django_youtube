@@ -54,7 +54,7 @@ def grab():
             # скачаиваем картинку на диск
             urllib.request.urlretrieve(img_from, MEDIA_ROOT + '/' + img_to)
         except Exception as ex:
-            img_to = 'bloger/tmp.png'
+            img_to = 'bloger/tmp.jpg'
 
         cur_item = {
             'title': a.attrib['title'],
@@ -76,10 +76,12 @@ def grab():
 
 
 # ===============   Change Category =============
-# django.jQuery('img').click(function(){
-#   tt= django.jQuery(this).parent().parent()
-#   id =   django.jQuery(tt).find('.action-checkbox input').attr('value')
-#   console.info(id)
-#   django.jQuery.post("/bloger/setcat/?pk="+ id + '&cat=5')
-#
-# })
+'''
+django.jQuery('img').click(function(){
+  tt= django.jQuery(this).parent().parent()
+  id =   django.jQuery(tt).find('.action-checkbox input').attr('value')
+  console.info(id)
+  django.jQuery.get("/bloger/setcat/?pk="+ id + '&cat=5')
+
+})
+'''
