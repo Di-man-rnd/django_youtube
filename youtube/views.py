@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
+from django.views.generic import ListView
+
 from youtube.models import Bloger, Category
 
 # ===== Function =====
@@ -21,3 +23,14 @@ def set_cat(request):
     bloger.category_id = int(request.GET['cat'])
     bloger.save()
     return HttpResponse('ok')
+
+
+# ===== Class =====
+
+
+class BlogerList(ListView):
+    model = Bloger
+    # template_name = 'youtube/bloger_list.html'  # можем явно указать
+    #  youtube - имя приложения
+    #  bloger_list.html - название класса в нижнем регистре
+    #  object_list - доступна в шаблоне  {% for publisher in object_list %}

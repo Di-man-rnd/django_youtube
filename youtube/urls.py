@@ -6,10 +6,14 @@ from youtube.views import *
 
 # url:  /bloger/ =>
 urlpatterns = [
+    # Function
     url(r'^$', all_bloger, name='all_bloger'),
     url(r'^([0-9]+)/$', detail_bloger, name='detail_bloger'),
 
-# js AJAX
+    # Class
+    url(r'^list/$', BlogerList.as_view()),
+
+    # js AJAX
     url(r'^setcat/$', set_cat),
 ]
 

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    base Class list View
+{% endblock %}
+
+{% block content %}
+    <h4>Bloger</h4>
+    <ul>
+        {% for publisher in object_list %}
+            <li>{{ publisher.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
