@@ -1,9 +1,6 @@
 {% extends 'skelet.html' %}
 
 {% block content %}
-    {% if form.errors %}
-        <b>{{ form.errors }}</b>
-    {% endif %}
 
     <form action="" method="post">
         <table border="1">
@@ -12,11 +9,28 @@
         <input type="submit" value="Отправить">
     </form>
 
-
     <hr><hr>
     <u>Отдельно поле из формы</u><br><br>
     {{ form.message }}
     <br><u>Отдельно поле для ошибок</u><br><br>
     {{ form.message.errors }}
+
+
+    {% if form.errors %}
+        <b>{{ form.errors }}</b>
+    {% endif %}
+
+
+
+{#    {% if form.subject.errors %}#}
+{#    <ol>#}
+{#    {% for error in form.subject.errors %}#}
+{#        <li><strong>{{ error|escape }}</strong></li>#}
+{#    {% endfor %}#}
+{#    </ol>#}
+{#{% endif %}#}
+
+
+
 
 {% endblock %}

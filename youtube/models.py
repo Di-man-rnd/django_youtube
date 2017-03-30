@@ -1,4 +1,6 @@
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.forms import ModelForm, Textarea
 
 
 class BlogerManager(models.Manager):
@@ -35,6 +37,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+            return reverse('category_detail', args=[self.pk])
+
 
 # ====================== SIGNALS ======================
 # bloger del img

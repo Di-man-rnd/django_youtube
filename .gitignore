@@ -4,4 +4,4 @@
 *.log
 .idea/
 
-/files/media/bloger/
+#/files/media/bloger/

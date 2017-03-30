@@ -1,7 +1,11 @@
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse_lazy
+from django.forms import ModelForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView
 
+from django.views.generic import CreateView, UpdateView, DeleteView
+from youtube.form import *
 from youtube.models import Bloger, Category
 
 # ============= Function =============
@@ -60,6 +64,8 @@ class BlogerDetail(DetailView):
         return obj
 
 
+
+
 class CategoryList(ListView):
     model = Category
 
@@ -82,5 +88,38 @@ class CategoryDetailList(ListView):
         return context
 
 
+def categoryAdd(request):
+    if request.method == 'POST':
+        form = categoryAddForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['name'])
+            print(form.data['name'])
+            return HttpResponseRedirect('/bloger/category/add/')
+    else:
+        form = categoryAddForm()
+
+    return render(request, 'youtube/category/add_function.html', {'form': form})
+
+
+class CategoryCreate(CreateView):
+    model = Category
+    fields = '__all__'
+    template_name = 'youtube/category/add.html'
+
+
+class CategoryUpdate(UpdateView):
+    model = Category
+    fields = '__all__'
+    template_name = 'youtube/category/update.html'
+    template_name_suffix = '_update_form'
+
+
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('category_list')
+    template_name = 'youtube/category/delete.html'
+
+
+# ===========Helper ======================
 class About(TemplateView):
     template_name = 'helper/about.html'
