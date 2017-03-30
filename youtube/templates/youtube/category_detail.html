@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}cat detail{% endblock %}
+
+{% block content %}
+
+    <p>Категория: {{ cat.name }}</p>
+    <hr>
+
+    {% if cat_detail %}
+        {% for detail in cat_detail %}
+            <p>Блогер: {{ detail.name }}</p>
+        {% endfor %}
+    {% else %}
+        В данной категории нет блогеров
+    {% endif %}
+
+
+
+
+
+{% endblock %}

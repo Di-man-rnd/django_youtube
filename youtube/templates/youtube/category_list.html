@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <h4>Bloger</h4>
+    <h4>Category</h4>
     <ul>
-        {% for obj in object_list %}
-            <li>{{ obj.name }}</li>
+        {% for category in category_list %}
+            <li>{{ category.name }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

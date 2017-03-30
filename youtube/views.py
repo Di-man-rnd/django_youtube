@@ -1,10 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
-from django.views.generic import ListView
+from django.shortcuts import render, render_to_response, get_object_or_404
+from django.views.generic import ListView, DetailView, TemplateView
 
 from youtube.models import Bloger, Category
 
-# ===== Function =====
+# ============= Function =============
 
 
 def all_bloger(request):
@@ -25,12 +25,62 @@ def set_cat(request):
     return HttpResponse('ok')
 
 
-# ===== Class =====
+# =============== Class ===============
 
 
 class BlogerList(ListView):
     model = Bloger
     # template_name = 'youtube/bloger_list.html'  # можем явно указать
-    #  youtube - имя приложения
-    #  bloger_list.html - название класса в нижнем регистре
-    #  object_list - доступна в шаблоне  {% for publisher in object_list %}
+    #       youtube - имя приложения
+    #       bloger_list.html - название класса модели в нижнем регистре, через
+    #                          нижнее подчеркивание и первое слово от (ListView):
+
+    #  object_list - доступна в шаблоне  {% for publisher in object_list %} или
+    #  bloger_list - доступна в шаблоне  по названию класса {% for publisher in bloger_list %} или
+    #  context_object_name = my_blogers - задать в ручную, доступна в шаблоне  {% for publisher in my_blogers %}
+
+
+class BlogerDetail(DetailView):
+    model = Bloger # или явно указать запрос queryset = Publisher.objects.all(), а поле model убрать
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogerDetail, self).get_context_data(**kwargs)
+        context.update({'na': 'Dima'})
+        context['year'] = '2017'
+        return context
+
+    # object - доступна в шаблоне  {% for publisher in object.url %}
+    # то что подкинули в get_context_data доступна по имени {{ na }}
+
+    # get_object– это метод, который получает и возвращает “рабочий” объект
+    def get_object(self):
+        obj = super(BlogerDetail, self).get_object()
+        # obj.name = str(obj.name) + '-------'
+        # obj.save()
+        return obj
+
+
+class CategoryList(ListView):
+    model = Category
+
+
+# отображает блогеров по конкретной категории
+class CategoryDetailList(ListView):
+    # model = Category
+    template_name = 'youtube/category_detail.html'
+    context_object_name = 'cat_detail'
+
+    # динамически формируем запрос
+    def get_queryset(self):
+        self.cat = get_object_or_404(Category, pk=self.args[0])
+        return Bloger.objects.filter(category__id=self.cat.id)
+
+    # подкидываем данные
+    def get_context_data(self, **kwargs):
+        context = super(CategoryDetailList, self).get_context_data(**kwargs)
+        context['cat'] = self.cat
+        return context
+
+
+class About(TemplateView):
+    template_name = 'helper/about.html'
