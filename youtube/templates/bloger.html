@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}
- All Blogers
-{% endblock %}
+{#{% load cache %}======================================#}
+
+{% block title %} All Blogers{% endblock %}
 
 
 {% block content %}
@@ -23,30 +23,30 @@
     }
     .generic_yt_a {color: #d1d1d1; }
     </style>
-
-    <div class="row">
-    {% for bloger in blogers %}
-        <div class="list-group col-sm-6 col-md-4">
-            <div class="media list-group-item active">
-                <a class="pull-left" href="{% url 'detail_bloger' bloger.id %}">
-                    <img class="media-object" src="/files/media/{{ bloger.img }}" alt="{{ bloger.name }}">
-                </a>
-                <div class="media-body">
-                    <h5 class="media-heading" title="{{ bloger.name }}">
-                        {{ bloger.name|slice:":20" }}
-                        {% if bloger.name|length > 20 %}...{% endif %}
-                    </h5>
-                   <span class="label label-info">{{ bloger.category }}</span>
-                    <br>
-                    <p class="generic_yt_p">
-                        youtube: <a class="generic_yt_a" href="{{ bloger.url }}" target="_blank" >{{ bloger.url|slice:"-12:" }}</a>
-                    </p>
+{#    {% cache 500 sidebar %}===================================#}
+        <div class="row">
+        {% for bloger in blogers %}
+            <div class="list-group col-sm-6 col-md-4">
+                <div class="media list-group-item active">
+                    <a class="pull-left" href="{% url 'detail_bloger' bloger.id %}">
+                        <img class="media-object" src="/files/media/{{ bloger.img }}" alt="{{ bloger.name }}">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading" title="{{ bloger.name }}">
+                            {{ bloger.name|slice:":20" }}
+                            {% if bloger.name|length > 20 %}...{% endif %}
+                        </h5>
+                       <span class="label label-info">{{ bloger.category }}</span>
+                        <br>
+                        <p class="generic_yt_p">
+                            youtube: <a class="generic_yt_a" href="{{ bloger.url }}" target="_blank" >{{ bloger.url|slice:"-12:" }}</a>
+                        </p>
+                    </div>
                 </div>
             </div>
+        {% endfor %}
         </div>
-    {% endfor %}
-    </div>
-
+{#    {% endcache %} ============================ ==============#}
 {% endblock %}
 
 

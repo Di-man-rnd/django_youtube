@@ -2,16 +2,25 @@ from django.core.urlresolvers import reverse_lazy
 from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+
 from youtube.form import *
 from youtube.models import Bloger, Category
 
 # ============= Function =============
 
 
+# @cache_page(60 * 15) # cacher
 def all_bloger(request):
+    # cache.set('my_key', 'hello, world!', 30)
+    # cache.get('my_key')
+    # cache.get_or_set('my_new_key', 'my new value', 100)
+    # cache.get_many(['a', 'b', 'c'])  =>  {'a': 1, 'b': 2, 'c': 3}
+    # cache.delete('a')
+    # cache.delete_many(['a', 'b', 'c'])
     bloger = Bloger.objects.all().order_by('name')
     return render_to_response('bloger.html', {'blogers': bloger})
 
@@ -30,10 +39,11 @@ def set_cat(request):
 
 
 # =============== Class ===============
-
+from django.core.paginator import Paginator
 
 class BlogerList(ListView):
     model = Bloger
+    paginate_by = 10
     # template_name = 'youtube/bloger_list.html'  # можем явно указать
     #       youtube - имя приложения
     #       bloger_list.html - название класса модели в нижнем регистре, через
@@ -41,7 +51,7 @@ class BlogerList(ListView):
 
     #  object_list - доступна в шаблоне  {% for publisher in object_list %} или
     #  bloger_list - доступна в шаблоне  по названию класса {% for publisher in bloger_list %} или
-    #  context_object_name = my_blogers - задать в ручную, доступна в шаблоне  {% for publisher in my_blogers %}
+    #  context_object_name = 'my_blogers'  #- задать в ручную, доступна в шаблоне  {% for publisher in my_blogers %}
 
 
 class BlogerDetail(DetailView):
