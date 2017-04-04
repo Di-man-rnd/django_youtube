@@ -24,7 +24,7 @@
             {% endif %}
 
             <span class="current">
-                Page ({{ page_obj.previous_page_number }} | {{ page_obj.next_page_number }}) of {{ paginator.num_pages }}. {{ paginator.page_range }}
+                Page ({% if page_obj.has_previous %}{{ page_obj.previous_page_number }}{% endif %} | {{ page_obj.next_page_number }}) of {{ paginator.num_pages }}. {{ paginator.page_range }}
             </span>
 
             {% if page_obj.has_next %}
