@@ -1,8 +1,7 @@
 from django import template
-
 from books.models import Book
-
 register = template.Library()
+
 
 # ==========================filter=========================================
 def cut2(value, arg):

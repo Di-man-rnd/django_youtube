@@ -38,10 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'books',
-    'youtube'
-    # 'django.contrib.flatpages',
-    # 'django.contrib.sites',
+    'youtube',
+    'blog',
+
+    'django.contrib.flatpages',
+    'django.contrib.sites',
+
     # 'gunicorn',
 ]
 
@@ -117,9 +121,33 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/files/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 
 TEMPLATE_DIRS = [BASE_DIR + '/templates']
 LOG_PATH = BASE_DIR + '/log.txt'
+
+
+
+
+
+
+
+
+
+# INSTALLED_APPS += ("djcelery", )
+# адрес redis сервера
+BROKER_URL = 'amqp://admin:admin@127.0.0.1:5672/'
+# храним результаты выполнения задач так же в redis
+CELERY_RESULT_BACKEND = 'amqp://admin:admin@127.0.0.1:5672/'
+# в течение какого срока храним результаты, после чего они удаляются
+CELERY_TASK_RESULT_EXPIRES = 7*86400  # 7 days
+# это нужно для мониторинга наших воркеров
+CELERY_SEND_EVENTS = True
+# место хранения периодических задач (данные для планировщика)
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+# в конец settings.py добавляем строчки
+import djcelery
+djcelery.setup_loader()

@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Responsive CSS Timeline with 3D Effect</title>
+		<meta name="description" content="Responsive CSS Timeline with 3D Effect" />
+		<meta name="keywords" content="timeline, 3d, css, css3, css-only, transitions, responsive, fluid" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+		<script src="{% static 'js/modernizr.custom.63321.js' %}"></script>
+		<!--[if lte IE 7]><style>.support-note .note-ie{display:block;}</style><![endif]-->
+	</head>
+	<body>
+		<div class="container">
+
+			<header class="clearfix">
+            {% block header %}
+				<h1>Blog... <span>)))</span></h1>
+				<h2>{% block title %}Blog {% endblock %}</h2>
+				<div class="support-note">
+					<span class="note-ie">Sorry, only modern browsers.</span>
+				</div>
+            {% endblock %}
+			</header>
+            <section class="main">
+                {% block content %}  {% endblock %}
+            </section>
+		</div><!-- /container -->
+
+	</body>
+</html>

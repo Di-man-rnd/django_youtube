@@ -1,0 +1,1 @@
+/home/Bondarenko/PycharmProjects/learn/test/teach/blog/static/js/modernizr.custom.63321.js

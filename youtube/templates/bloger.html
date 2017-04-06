@@ -26,7 +26,7 @@
 {#    {% cache 500 sidebar %}===================================#}
         <div class="row">
         {% for bloger in blogers %}
-            <div class="list-group col-sm-6 col-md-4">
+            <div class="list-group col-sm-6 col-md-6">
                 <div class="media list-group-item active">
                     <a class="pull-left" href="{% url 'detail_bloger' bloger.id %}">
                         <img class="media-object" src="/files/media/{{ bloger.img }}" alt="{{ bloger.name }}">

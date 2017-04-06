@@ -1,0 +1,59 @@
+{% extends 'skeleton_blog.html' %}
+
+{% block content %}
+{#  CATEGORY  #}
+        <p style="text-align: center;">
+    {% for cat in category %}
+        <a href="{% url 'category' cat.id %}"><span>{{ cat|lower }}</span></a>
+    {% endfor %}
+        </p>
+
+
+{# ELEMENTS  #}
+
+    <ul class="timeline">
+    {% for object in object_list %}
+        <li class="event">
+            <input type="radio" name="tl-group" {% if forloop.first %}checked{% endif %}/>
+            <label></label>
+            <div class="thumb " style="background-image:url(/files/media/{{ object.img }}); background-size: 100px;"><span> </span></div>
+            <div class="content-perspective">
+                <div class="content">
+                    <div class="content-inner">
+                        <a href="{% url 'detail' object.id %}"><h3>{{ object.name }}</h3></a>
+                        <p>категория - {{ object.category }}</p>
+                        <p>избранное - {% if object.is_favorites %}&#10004;{% else %} &#10008;{% endif %}</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+
+{#  PAGINATION  #}
+
+    <hr>
+    <br>
+    <div class="paginator">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page all {{ paginator.num_pages }}
+                ({% for i in paginator.page_range %}
+                    <a href="?page={{ i }}">{{ i }}</a>
+                {% endfor %})
+
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+<br><br>
+
+{% endblock %}
