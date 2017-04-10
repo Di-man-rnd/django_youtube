@@ -1,7 +1,5 @@
 from django.db import models
-
-from django.db import models
-
+from ckeditor.fields import RichTextField
 
 class Main(models.Model):
     YEAR = (
@@ -17,7 +15,7 @@ class Main(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=True)
     point = models.CharField(choices=YEAR, default='SO', max_length=100, blank=True, null=True)
     date_create = models.DateField(auto_now_add=True, blank=True, null=True)
-    comment = models.TextField(blank=True, null=True)
+    comment = RichTextField()
 
     class Meta:
         app_label = 'youtube'

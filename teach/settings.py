@@ -46,8 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django.contrib.sites',
 
+    'ckeditor',
+    'ckeditor_uploader',
     # 'gunicorn',
 ]
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

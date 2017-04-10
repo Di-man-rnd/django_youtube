@@ -42,7 +42,6 @@ urlpatterns = patterns('',
     (r'^hello7/(?P<y>\d{4})/(?P<m>\d{2})/(?P<d>\d{2})/$', hello7),
     (r'^hello7/$', hello7main),
 
-
     (r'^books/$', getbooks),
     (r'^search/$', search),
     (r'^contact/$', contact),
@@ -57,6 +56,7 @@ urlpatterns = patterns('',
 
     (r'^bloger/', include('youtube.urls')),
     (r'^blog/', include('blog.urls')),
+    (r'^ckeditor/', include('ckeditor_uploader.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
