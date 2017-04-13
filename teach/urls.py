@@ -57,6 +57,10 @@ urlpatterns = patterns('',
     (r'^bloger/', include('youtube.urls')),
     (r'^blog/', include('blog.urls')),
     (r'^ckeditor/', include('ckeditor_uploader.urls')),
+    (r'^pages/', include('django.contrib.flatpages.urls')),
+
+    url(r'^tinymce/', include('tinymce.urls')),
+
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

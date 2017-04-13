@@ -11,7 +11,7 @@ SECRET_KEY = '_dlbu82kz90g=il(w@zenmqumj*w=)icmtng*302=x%enz@=i!'
 
 DEBUG = True
 TEMPLATE_DEBUG = False
-
+SITE_ID = 1
 # отправлять емэил на почту при ошибках
 # ADMINS = (
 #     ('name', 'E-mail'),
@@ -45,13 +45,44 @@ INSTALLED_APPS = [
 
     'django.contrib.flatpages',
     'django.contrib.sites',
-
+    'tinymce',
     'ckeditor',
     'ckeditor_uploader',
     # 'gunicorn',
 ]
+
+
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
+        # 'height': 391,
+        # 'width': '100%',
+        # 'filebrowserWindowHeight': 725,
+        # 'filebrowserWindowWidth': 940,
+        # 'toolbarCanCollapse': True,
+        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'div', 'autolink', 'autoembed', 'embedsemantic', 'autogrow', 'devtools',
+            'widget', 'lineutils', 'clipboard', 'dialog', 'dialogui', 'elementspath',
+            'a11yhelp',  'adobeair', 'ajax', 'autoembed', 'autogrow', 'autolink',
+            'clipboard', 'codesnippet','codesnippetgeshi', 'colordialog', 'devtools',
+            'dialog', 'div', 'divarea', 'docprops', 'embed', 'embedbase','embedsemantic',
+            'filetools', 'find', 'flash', 'forms', 'iframe', 'iframedialog', 'image',
+            'image2', 'language','lineutils', 'link', 'liststyle', 'magicline', 'mathjax',
+            'menubutton', 'notification', 'notificationaggregator','pagebreak', 'pastefromword',
+            'placeholder', 'preview', 'scayt', 'sharedspace', 'showblocks', 'smiley','specialchar',
+            'stylesheetparser', 'table', 'tableresize', 'tabletools', 'templates', 'uicolor',
+            'uploadwidget', 'widget', 'wsc', 'xml']
+        ),
+    }
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,6 +167,9 @@ LOG_PATH = BASE_DIR + '/log.txt'
 
 
 
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = BASE_DIR
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 

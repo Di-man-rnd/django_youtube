@@ -1,6 +1,6 @@
 from django.contrib import admin
 from blog.models import *
-
+from ckeditor.fields import RichTextField
 
 class MainInlines(admin.TabularInline):
     model = PhoneNotis
@@ -11,3 +11,9 @@ class MainInlines(admin.TabularInline):
 class MainAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     inlines = [MainInlines]
+
+    class Media:
+        js = (
+            '/static/tiny_mce/tiny_mce.js',
+            '/static/tiny_mce/tiny_mce_init.js',
+        )

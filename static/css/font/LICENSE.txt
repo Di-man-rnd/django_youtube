@@ -1,1 +1,12 @@
-/home/Bondarenko/PycharmProjects/learn/test/teach/blog/static/css/font/LICENSE.txt
+Font license info
+
+
+## Font Awesome
+
+   Copyright (C) 2012 by Dave Gandy
+
+   Author:    Dave Gandy
+   License:   CC BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
+   Homepage:  http://fortawesome.github.com/Font-Awesome/
+
+
