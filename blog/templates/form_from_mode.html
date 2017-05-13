@@ -1,0 +1,11 @@
+{% extends 'skeleton_blog.html' %}
+
+{% if request.user %}
+
+{% endif %}
+
+{% block content %}
+    <ul>
+    {{ form.as_ul }}
+    </ul>
+{% endblock %}

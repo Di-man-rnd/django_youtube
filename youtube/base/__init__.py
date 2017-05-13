@@ -64,7 +64,7 @@ def grab():
 
         # увеличиваем название картинки на 1, т.к в rss ленте они все называются photo
         count += 1
-        print(count, cur_item)
+        print(count, cur_item['title'])
 
         # создаем элемент в БД
         elem = Bloger(

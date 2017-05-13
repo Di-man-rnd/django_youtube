@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^list/(.*)/$', ListPage.as_view(), name='category'),
     url(r'^detail/(?P<pk>[0-9]+)/$', DetailPage.as_view(), name='detail'),
 
+    url(r'^form/$', formt),
 
 
     # url(r'^([0-9]+)/$', detail_bloger, name='detail_bloger'),

@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
+
+from blog.models import Main
+from forms import FormBlog
 from youtube.models import Bloger, Category
 from .tasks import just_print
 

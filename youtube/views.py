@@ -100,11 +100,13 @@ class CategoryDetailList(ListView):
 
 def categoryAdd(request):
     if request.method == 'POST':
-        form = categoryAddForm(request.POST)
+        form = categoryAddForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form.cleaned_data['name'])
             print(form.data['name'])
-            return HttpResponseRedirect('/bloger/category/add/')
+            cat = Category(form)
+            cat.save()
+            return HttpResponseRedirect('/bloger/category/add_func/')
+
     else:
         form = categoryAddForm()
 
